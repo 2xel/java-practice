@@ -24,42 +24,18 @@ public class Lambda {
 	}
 
 	public static int sum(List<Integer> numbers, Conditional c) {
-		int total = 0;
-		for (Integer number : numbers) {
-			if (c.test(number)) {
-				total += number;
-			}
-		}
-		return total;
+		return numbers.stream().filter(c::test).reduce(0, (value1, value2) -> value1 + value2);
 	}
 
 	public static int sumAll(List<Integer> numbers) {
-		return sum(numbers, new Conditional() {
-
-			@Override
-			public boolean test(Integer number) {
-				return true;
-			}
-		});
+		return sum(numbers, number -> true);
 	}
 
 	public static int sumAllEven(List<Integer> numbers) {
-		return sum(numbers, new Conditional() {
-
-			@Override
-			public boolean test(Integer number) {
-				return (number % 2 == 0) ? true : false;
-			}
-		});
+		return sum(numbers, number -> number % 2 == 0);
 	}
 
 	public static int sumAllOverThree(List<Integer> numbers) {
-		return sum(numbers, new Conditional() {
-			
-			@Override
-			public boolean test(Integer number) {
-				return (number > 3) ? true : false;
-			}
-		});
+		return sum(numbers, number -> number > 3);
 	}
 }
