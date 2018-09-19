@@ -3,25 +3,25 @@ package next.optional;
 import java.util.Optional;
 
 public class Computer {
-	private Soundcard soundcard;
+	private Optional<Soundcard> soundcard;
 
 	public Computer(Soundcard soundcard) {
-		this.soundcard = soundcard;
+		this.soundcard = Optional.ofNullable(soundcard);
 	}
 	
-	public Soundcard getSoundcard() {
+	public Optional<Soundcard> getSoundcard() {
 		return soundcard;
 	}
 	
 	public static class Soundcard {
-		private USB usb;
+		private Optional<USB> usb;
 
 		public Soundcard(USB usb) {
 			super();
-			this.usb = usb;
+			this.usb = Optional.ofNullable(usb);
 		}
 		
-		public USB getUsb() {
+		public Optional<USB> getUsb() {
 			return usb;
 		}
 	}
